@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mark's Geek Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1c1c1c;
+      color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    header {
+      background-color: #e50914;
+      padding: 1em;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    .section {
+      padding: 1em;
+      border-bottom: 1px solid #444;
+    }
+    h2 {
+      color: #ffa500;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    li {
+      margin: 0.5em 0;
+    }
+    a {
+      color: #87ceeb;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .dark-mode {
+      background-color: #f0f0f0;
+      color: #1c1c1c;
+    }
+    .toggle-buttons {
+      text-align: center;
+      padding: 1em;
+    }
+    .toggle-buttons button {
+      margin: 0 0.5em;
+      padding: 0.5em 1em;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    .weather-widget {
+      margin-top: 1em;
+      text-align: center;
+    }
+    iframe.weather-frame {
+      border: none;
+      width: 100%;
+      max-width: 400px;
+      height: 250px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mark's Geek Portal</h1>
+    <p>Daily updates from the multiverse of awesome</p>
+  </header>
+
+  <div class="toggle-buttons">
+    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    <button onclick="switchBackgroundTheme()">Switch Theme</button>
+  </div>
+
+  <div class="section">
+    <h2>📚 Comic Book Central</h2>
+    <ul>
+      <li><a href="https://www.comicbookherald.com/" target="_blank">Comic Book Herald</a></li>
+      <li><a href="https://leagueofcomicgeeks.com/" target="_blank">League of Comic Geeks</a></li>
+      <li><a href="https://twomorrows.com/index.php?main_page=index&cPath=98_56" target="_blank">Back Issue Magazine</a></li>
+      <li><a href="https://www.tcj.com/" target="_blank">The Comics Journal</a></li>
+      <li><a href="https://leagueofcomicgeeks.com/comics" target="_blank">Comic Cover of the Day</a></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>🖖 Star Trek Universe</h2>
+    <ul>
+      <li><a href="https://trekmovie.com/" target="_blank">TrekMovie</a></li>
+      <li><a href="https://www.ex-astris-scientia.org/" target="_blank">Ex Astris Scientia</a></li>
+      <li><a href="https://memory-alpha.fandom.com/wiki/Portal:Main" target="_blank">Memory Alpha</a></li>
+    </ul>
+    <p><strong>Podcasts to Check Out:</strong> The Greatest Generation, Mission Log</p>
+  </div>
+
+  <div class="section">
+    <h2>⚔️ Star Wars Watchtower</h2>
+    <ul>
+      <li><a href="https://www.starwars.com/news" target="_blank">StarWars.com News</a></li>
+      <li><a href="https://www.fanthatracks.com/" target="_blank">Fantha Tracks</a></li>
+      <li><a href="https://www.youtini.com/" target="_blank">Youtini Reading Guides</a></li>
+    </ul>
+    <p><strong>Podcasts to Check Out:</strong> Star Wars Explained (YouTube)</p>
+  </div>
+
+  <div class="section">
+    <h2>🏀 IU Hoosiers Hub</h2>
+    <ul>
+      <li><a href="https://www.insidethehall.com/" target="_blank">Inside the Hall</a></li>
+      <li><a href="https://www.thedailyhoosier.com/" target="_blank">The Daily Hoosier</a></li>
+      <li><a href="https://indiana.rivals.com/" target="_blank">Peegs (Rivals)</a></li>
+    </ul>
+    <p><strong>Countdown to Next Game:</strong> <span id="iuCountdown"></span></p>
+    <p><strong>Podcasts to Check Out:</strong> CrimsonCast, Assembly Call</p>
+  </div>
+
+  <div class="section">
+    <h2>💳 Points & Travel Tools</h2>
+    <ul>
+      <li><a href="https://www.doctorofcredit.com/" target="_blank">Doctor of Credit</a></li>
+      <li><a href="https://thepointsguy.com/" target="_blank">The Points Guy</a></li>
+      <li><a href="https://awardwallet.com/blog/" target="_blank">AwardWallet Blog</a></li>
+      <li><a href="https://seats.aero/" target="_blank">Seats.Aero</a></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>🎶 Grateful Dead Zone</h2>
+    <ul>
+      <li><a href="https://www.dead.net/" target="_blank">Official Grateful Dead Site</a></li>
+      <li><a href="https://archive.org/details/GratefulDead" target="_blank">Internet Archive - Live Shows</a></li>
+      <li><a href="https://www.youtube.com/@GratefulDead" target="_blank">Grateful Dead YouTube</a></li>
+    </ul>
+    <p><strong>Dead Quote of the Day:</strong> <span id="deadQuote"></span></p>
+  </div>
+
+  <div class="section weather-widget">
+    <h2>🌤️ Weather Forecast</h2>
+    <iframe class="weather-frame" src="https://forecast7.com/en/38d78n77d18/springfield/?unit=us" title="Weather Forecast"></iframe>
+  </div>
+
+  <script>
+    const quotes = [
+      "Sometimes the lights all shining on me, other times I can barely see.",
+      "Once in a while you get shown the light in the strangest of places if you look at it right.",
+      "What a long, strange trip it's been.",
+      "Let there be songs to fill the air.",
+      "Ripple in still water, when there is no pebble tossed.",
+      "Do or do not. There is no try. - Yoda",
+      "I find your lack of faith disturbing. - Darth Vader",
+      "Never tell me the odds! - Han Solo",
+      "I’ve got a bad feeling about this. - Various",
+      "The Force will be with you. Always. - Obi-Wan Kenobi",
+      "Live long and prosper. - Spock",
+      "Resistance is futile. - The Borg",
+      "Make it so. - Captain Picard",
+      "I'm a doctor, not a bricklayer! - Dr. McCoy",
+      "Logic is the beginning of wisdom, not the end. - Spock"
+    ];
+    document.getElementById("deadQuote").innerText = quotes[Math.floor(Math.random() * quotes.length)];
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    function switchBackgroundTheme() {
+      const themes = ['#1c1c1c', '#000033', '#330000', '#003300'];
+      const colors = ['#f0f0f0', '#fffacd', '#ffb6c1', '#adff2f'];
+      let current = document.body.getAttribute('data-theme') || 0;
+      current = (parseInt(current) + 1) % themes.length;
+      document.body.style.backgroundColor = themes[current];
+      document.body.style.color = colors[current];
+      document.body.setAttribute('data-theme', current);
+    }
+
+    function updateCountdown() {
+      const nextGameDate = new Date('2025-09-06T15:30:00');
+      const now = new Date();
+      const diff = nextGameDate - now;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      document.getElementById("iuCountdown").innerText = `${days} days, ${hours} hours, ${minutes} minutes`;
+    }
+    setInterval(updateCountdown, 60000);
+    updateCountdown();
+  </script>
+</body>
+</html>
